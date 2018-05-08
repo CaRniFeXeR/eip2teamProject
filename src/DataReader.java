@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class DataReader {
 
-    public static void ReadData(Datastructure datastructure) {
+    public static void ReadData(Datastructure datastructure,String dataFilename) {
         try (Scanner s = new Scanner(
                 new File(System.getProperty("user.dir") +
-                        "/data/junctions.csv"), "UTF-8")) {
+                        "/data/" + dataFilename), "UTF-8")) {
             while (s.hasNextLine()) {
                 Location currentLocation = DataReader.parseLocation(s.nextLine());
 
@@ -27,7 +27,7 @@ public class DataReader {
     }
 
     private static Location parseLocation(String input) {
-        if (input != null || !input.isEmpty()) {
+        if (input == null || input.isEmpty()) {
             return null;
         }
 
