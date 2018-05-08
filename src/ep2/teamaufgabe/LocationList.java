@@ -1,8 +1,9 @@
-import Models.Airport;
-import Models.Location;
-import Models.Trainstation;
+package ep2.teamaufgabe;
 
-import java.lang.reflect.Array;
+import ep2.teamaufgabe.Models.Airport;
+import ep2.teamaufgabe.Models.Location;
+import ep2.teamaufgabe.Models.Trainstation;
+
 import java.util.ArrayList;
 
 public class LocationList implements Datastructure {

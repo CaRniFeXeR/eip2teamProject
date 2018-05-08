@@ -1,4 +1,6 @@
-import Models.Location;
+package ep2.teamaufgabe;
+
+import ep2.teamaufgabe.Models.Location;
 
 public interface Datastructure {
     void add(Location location);
