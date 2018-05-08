@@ -3,5 +3,7 @@ public class Main {
         System.out.println("TEAMAUFGABE");
         System.out.println("TEAMAUFGABE");
         System.out.println("Fabs initialized!");
+
+        DataReader.ReadData();
     }
 }
