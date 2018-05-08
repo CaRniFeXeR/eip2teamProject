@@ -1,4 +1,4 @@
-import Models.Location;
+package Models;
 
 public class Trainstation extends Location {
 
