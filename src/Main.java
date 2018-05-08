@@ -6,8 +6,15 @@ public class Main {
         System.out.println("TEAMAUFGABE");
         System.out.println("Fabs initialized!");
 
-        LocationList list = new LocationList();
-        DataReader.ReadData(list);
-        System.out.println(list.countLocationsInArea(0.0, 0.0, 78055556)[1]);
+        LocationList listStucture = new LocationList();
+
+
+        //Simple Data
+        DataReader.ReadData(listStucture,"simpleData.csv");
+
+        //big Data
+        //DataReader.ReadData(listStucture,"junctions.csv");
+
+        System.out.println("Number of Trainstations :" + listStucture.countLocationsInArea(0,0,6)[1]);
     }
 }
