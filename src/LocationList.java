@@ -2,6 +2,7 @@ import Models.Airport;
 import Models.Location;
 import Models.Trainstation;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class LocationList implements Datastructure {
@@ -10,58 +11,52 @@ public class LocationList implements Datastructure {
 
     @Override
     public void add(Location location) {
-       if(location.getClass() == Airport.class){
-           this.airports.add((Airport) location);
-       }else{
-           this.trainstations.add((Trainstation) location);
-       }
+        if (location.getClass() == Airport.class) {
+            this.airports.add((Airport) location);
+        } else {
+            this.trainstations.add((Trainstation) location);
+        }
     }
 
     @Override
     public int[] countLocationsInArea(double x, double y, double r) {
-        int airportCount = 0;
-        int trainstationCount = 0;
-
-        for(int i = 0; i < this.airports.size(); i++){
-            double dx = this.airports.get(i).getXCoordiante() - x;
-            double dy = this.airports.get(i).getYCoordinate() - y;
-            double distance = Math.abs(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
-
-            if(distance <= r){
-                airportCount++;
-            }
-        }
+        int airportCount = this.getLocationsinAera(this.airports, x, y, r);
+        int trainstationCount = this.getLocationsinAera(this.trainstations, x, y, r);
 
 
-        for(int i = 0; i < this.trainstations.size(); i++){
-            double dx = this.trainstations.get(i).getXCoordiante() - x;
-            double dy = this.trainstations.get(i).getYCoordinate() - y;
-            double distance = Math.abs(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
-
-            if(distance <= r){
-                trainstationCount++;
-            }
-        }
-
-
-        return new int[] {airportCount, trainstationCount};
+        return new int[]{airportCount, trainstationCount};
     }
 
     @Override
     public int countAriportsNearTrainstation(double r, int n) {
         int airportCount = 0;
 
-        for(int i = 0; i < this.airports.size(); i++){
+        for (int i = 0; i < this.airports.size(); i++) {
 
             double x = this.airports.get(i).getXCoordiante();
             double y = this.airports.get(i).getYCoordinate();
 
-            if(this.countLocationsInArea(x, y, r)[1] >= n){
+            if (this.getLocationsinAera(this.trainstations, x, y, r) >= n) {
                 airportCount++;
             }
 
         }
 
         return airportCount;
+    }
+
+    private int getLocationsinAera(ArrayList<? extends Location> source, double x, double y, double r) {
+        int count = 0;
+        for (int i = 0; i < source.size(); i++) {
+            double dx = source.get(i).getXCoordiante() - x;
+            double dy = source.get(i).getYCoordinate() - y;
+            double distance = Math.abs(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
+
+            if (distance <= r) {
+                count++;
+            }
+        }
+
+        return count;
     }
 }
