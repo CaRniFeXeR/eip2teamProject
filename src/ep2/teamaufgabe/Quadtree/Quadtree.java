@@ -15,6 +15,11 @@ public class Quadtree implements Datastructure {
     }
 
     @Override
+    public String getName() {
+        return "Quadtree";
+    }
+
+    @Override
     public void add(Location location) {
         if(this.root == null){
             this.root = new QuadtreeNode(this.minX, this.maxX, this.minY, this.maxY);
