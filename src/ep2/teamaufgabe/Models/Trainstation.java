@@ -1,4 +1,4 @@
-package Models;
+package ep2.teamaufgabe.Models;
 
 public class Trainstation extends Location {
 

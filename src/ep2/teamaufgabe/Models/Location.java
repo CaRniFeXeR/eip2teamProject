@@ -1,4 +1,4 @@
-package Models;
+package ep2.teamaufgabe.Models;
 
 public abstract class Location {
     private double x;
