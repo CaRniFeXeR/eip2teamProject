@@ -29,6 +29,13 @@ public class KDTreeStructure implements Datastructure {
     //endregion
 
     //region [Datastructure implementation]
+
+
+    @Override
+    public String getName() {
+        return "2D-Tree";
+    }
+
     @Override
     public void add(Location location) {
         if (location.getClass() == Trainstation.class) {

@@ -11,6 +11,11 @@ public class LocationList implements Datastructure {
     private ArrayList<Trainstation> trainstations = new ArrayList<>();
 
     @Override
+    public String getName() {
+        return "SimpleList";
+    }
+
+    @Override
     public void add(Location location) {
         if (location.getClass() == Airport.class) {
             this.airports.add((Airport) location);
