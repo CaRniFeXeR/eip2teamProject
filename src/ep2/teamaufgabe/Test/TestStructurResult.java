@@ -1,16 +1,18 @@
 package ep2.teamaufgabe.Test;
 
-public class TestStructurResult implements Comparable {
+public class TestStructurResult implements Comparable<TestStructurResult> {
     private String name;
     private double averageExecutionTime;
     private double initTime;
     private Object[] testResultValues;
+    private TestInput[] testInputs;
     private int count;
 
-    public TestStructurResult(String name, int testInputsCount) {
+    public TestStructurResult(String name, int testInputsCount, TestInput[] testInputs) {
         this.name = name;
         this.testResultValues = new Object[testInputsCount];
         this.count = 0;
+        this.testInputs = testInputs;
     }
 
     public void addResultValue(Object testResult) {
@@ -29,6 +31,7 @@ public class TestStructurResult implements Comparable {
         return averageExecutionTime;
     }
 
+
     public boolean compareTestResults(TestStructurResult r) {
         if (r == null) {
             return false;
@@ -43,8 +46,10 @@ public class TestStructurResult implements Comparable {
             boolean isEqual = this.testResultValues[i].toString().equals(r.testResultValues[i].toString());
 
             if (!isEqual) {
-                System.out.println("Ungleich beim " + i + ". Testinput");
+
+                System.out.println(" \n Unequal at " + i + ". Testinput" + this.name + " compared to " + r.name);
                 System.out.println(this.testResultValues[i].toString() + " is not Equal " + r.testResultValues[i].toString());
+                System.out.println("Testinput " + this.testInputs[i].toString() + "\n");
                 return false;
             }
         }
@@ -53,12 +58,8 @@ public class TestStructurResult implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (o.getClass() == TestStructurResult.class) {
-            return (int) (this.averageExecutionTime - ((TestStructurResult) o).averageExecutionTime);
-        } else {
-            return -1;
-        }
+    public int compareTo(TestStructurResult o) {
+        return (int) (this.averageExecutionTime - o.averageExecutionTime);
     }
 
     @Override

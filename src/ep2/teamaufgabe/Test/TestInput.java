@@ -20,6 +20,14 @@ public class TestInput {
         this.isCountAirports = true;
     }
 
+    public String toString() {
+        if(isCountAirports) {
+            return "r : "  + this.r + " n : " + this.n;
+        } else {
+            return "x : "  + this.x + " y : " + this.y + " r : " + this.r;
+        }
+    }
+
     public Object runMethod(Datastructure inputStructre) {
         if (inputStructre == null) {
             return null;
@@ -30,4 +38,6 @@ public class TestInput {
             return inputStructre.countLocationsInArea(this.x, this.y, this.r);
         }
     }
+
+
 }

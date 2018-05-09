@@ -10,13 +10,13 @@ public class Tester {
 
     //region [Public Methods]
 
-    public void testAndComparePerofrmance(ArrayList<Datastructure> testStructures, String dataInputFile, boolean checkResultIsEqual) {
-        this.testAndComparePerformance(testStructures, Tester.generateTestinput(), dataInputFile, checkResultIsEqual);
+    public void testAndComparePerofrmance(ArrayList<Datastructure> testStructures, String dataInputFile, int generationDataCount, boolean checkResultIsEqual) {
+        this.testAndComparePerformance(testStructures, Tester.generateTestinput(generationDataCount), dataInputFile, checkResultIsEqual);
     }
 
-    private void testAndComparePerformance(ArrayList<Datastructure> testStructures, ArrayList<TestInput> testInstructions, String dataInputFile, boolean checkResultIsEqual) {
+    private void testAndComparePerformance(ArrayList<Datastructure> testStructures, TestInput[] testInstructions, String dataInputFile, boolean checkResultIsEqual) {
         int allStructCount = testStructures.size();
-        int allTestInputsCount = testInstructions.size();
+        int allTestInputsCount = testInstructions.length;
         ArrayList<TestStructurResult> structurResults = new ArrayList<TestStructurResult>();
 
         System.out.println("**Testing Datastructure perfomance**");
@@ -26,9 +26,9 @@ public class Tester {
 
         for (Datastructure struct : testStructures) {
 
-            TestStructurResult currenResult = new TestStructurResult(struct.getName(), allTestInputsCount);
+            TestStructurResult currenResult = new TestStructurResult(struct.getName(), allTestInputsCount, testInstructions);
 
-            System.out.println("Testing " + struct.getName());
+            System.out.println("\nTesting " + struct.getName());
 
             this.startTimeMessure();
             DataReader.ReadData(struct, dataInputFile);
@@ -52,33 +52,37 @@ public class Tester {
             System.out.println("AverageExecutionTime " + currenResult.getAverageExecutionTime());
         }
 
-        if (checkResultIsEqual) {
 
+        if (checkResultIsEqual) {
+            System.out.println("\n**CompareResults**");
+            for (int i = 0; i < allStructCount; i++) {
+
+                if (i + 1 < allStructCount) {
+                    if (!structurResults.get(i).compareTestResults(structurResults.get(i + 1))) {
+                        System.out.println("Testresults of " + structurResults.get(i) + " not equal " + structurResults.get(i + 1));
+                    }
+                }
+            }
         }
 
         structurResults.sort(new TestStrucuturResultComperator());
 
-        System.out.println("*****RESULTS******");
+        System.out.println("\n*****RESULTS******");
 
         for (int i = 0; i < allStructCount; i++) {
-            System.out.println("" + (i + 1) + "." + structurResults.get(i));
-
-            if (checkResultIsEqual && i + 1 < allStructCount) {
-                if (!structurResults.get(i).compareTestResults(structurResults.get(i + 1))) {
-                    System.out.println("Testresults of " + structurResults.get(i) + " not equal " + structurResults.get(i + 1));
-                }
-            }
+            System.out.println("" + (i + 1) + ". " + structurResults.get(i));
         }
     }
 
-    public static ArrayList<TestInput> generateTestinput() {
-        ArrayList<TestInput> testInputs = new ArrayList<TestInput>();
+    public static TestInput[] generateTestinput(int amount) {
+        TestInput[] testInputs = new TestInput[amount];
+        amount++;
 
-        for (int i = 1; i < 100; i++) {
+        for (int i = 1; i < amount; i++) {
             double r = (i * Math.random() * 200 + 1) % 50;
             int n = (int) (i * Math.random() * 50) % 20;
 
-            testInputs.add(new TestInput(r, n));
+            testInputs[i - 1] = new TestInput(r, n);
         }
 
         return testInputs;

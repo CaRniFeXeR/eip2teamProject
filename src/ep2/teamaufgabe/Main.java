@@ -8,20 +8,18 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("TEAMAUFGABE");
-        System.out.println("TEAMAUFGABE");
-        System.out.println("Fabs initialized!");
+        System.out.println("TEAMAUFGABE init");
 
         ArrayList<Datastructure> datastructures = new ArrayList<>();
 
 
         datastructures.add(new KDTreeStructure());
         datastructures.add(new Quadtree(-81918465352051400d, 81918465352051400d, -59720745659516000d, 59720745659516000d));
-       // datastructures.add(new LocationList());
+        // datastructures.add(new LocationList());
 
         Tester test = new Tester();
 
-        test.testAndComparePerofrmance(datastructures, "junctions.csv", true);
+        test.testAndComparePerofrmance(datastructures, "junctions.csv", 4, true);
 
         // DataReader.ReadData(twoDimensionTree,"junctions.csv");
 
