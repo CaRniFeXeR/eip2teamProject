@@ -1,6 +1,8 @@
-import Models.Airport;
-import Models.Location;
-import Models.Trainstation;
+package ep2.teamaufgabe;
+
+import ep2.teamaufgabe.Models.Airport;
+import ep2.teamaufgabe.Models.Location;
+import ep2.teamaufgabe.Models.Trainstation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +10,7 @@ import java.util.Scanner;
 
 public class DataReader {
 
-    public static void ReadData(Datastructure datastructure,String dataFilename) {
+    public static void ReadData(Datastructure datastructure, String dataFilename) {
         try (Scanner s = new Scanner(
                 new File(System.getProperty("user.dir") +
                         "/data/" + dataFilename), "UTF-8")) {
