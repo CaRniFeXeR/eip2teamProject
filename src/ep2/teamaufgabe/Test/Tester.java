@@ -14,7 +14,7 @@ public class Tester {
         this.testAndComparePerformance(testStructures, Tester.generateTestinput(generationDataCount), dataInputFile, checkResultIsEqual);
     }
 
-    private void testAndComparePerformance(ArrayList<Datastructure> testStructures, TestInput[] testInstructions, String dataInputFile, boolean checkResultIsEqual) {
+    public void testAndComparePerformance(ArrayList<Datastructure> testStructures, TestInput[] testInstructions, String dataInputFile, boolean checkResultIsEqual) {
         int allStructCount = testStructures.size();
         int allTestInputsCount = testInstructions.length;
         ArrayList<TestStructurResult> structurResults = new ArrayList<TestStructurResult>();
