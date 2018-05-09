@@ -58,9 +58,10 @@ public class Tester {
 
         structurResults.sort(new TestStrucuturResultComperator());
 
+        System.out.println("*****RESULTS******");
 
         for (int i = 0; i < allStructCount; i++) {
-            System.out.println("" + i + "." + structurResults.get(i));
+            System.out.println("" + (i + 1) + "." + structurResults.get(i));
 
             if (checkResultIsEqual && i + 1 < allStructCount) {
                 if (!structurResults.get(i).compareTestResults(structurResults.get(i + 1))) {
@@ -73,7 +74,7 @@ public class Tester {
     public static ArrayList<TestInput> generateTestinput() {
         ArrayList<TestInput> testInputs = new ArrayList<TestInput>();
 
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i < 100; i++) {
             double r = (i * Math.random() * 200 + 1) % 50;
             int n = (int) (i * Math.random() * 50) % 20;
 

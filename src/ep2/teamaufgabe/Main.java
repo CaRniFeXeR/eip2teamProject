@@ -1,7 +1,8 @@
 package ep2.teamaufgabe;
 
-import ep2.teamaufgabe.Test.Tester;
 import ep2.teamaufgabe.KDTree.KDTreeStructure;
+import ep2.teamaufgabe.Quadtree.Quadtree;
+import ep2.teamaufgabe.Test.Tester;
 
 import java.util.ArrayList;
 
@@ -14,20 +15,20 @@ public class Main {
         ArrayList<Datastructure> datastructures = new ArrayList<>();
 
 
-
         datastructures.add(new KDTreeStructure());
-        datastructures.add(new LocationList());
+        datastructures.add(new Quadtree(-81918465352051400d, 81918465352051400d, -59720745659516000d, 59720745659516000d));
+       // datastructures.add(new LocationList());
 
         Tester test = new Tester();
 
-        test.testAndComparePerofrmance(datastructures,"junctions.csv",false);
+        test.testAndComparePerofrmance(datastructures, "junctions.csv", true);
 
-       // DataReader.ReadData(twoDimensionTree,"junctions.csv");
+        // DataReader.ReadData(twoDimensionTree,"junctions.csv");
 
-       // twoDimensionTree.print();
+        // twoDimensionTree.print();
 
         //System.out.println(twoDimensionTree.countLocationsInArea(0,0,2)[1]);
-      //  System.out.println("Number of Airports with n Trainsatation in an Distance of 15 " + twoDimensionTree.countAriportsNearTrainstation(1,5));
+        //  System.out.println("Number of Airports with n Trainsatation in an Distance of 15 " + twoDimensionTree.countAriportsNearTrainstation(1,5));
         //System.out.println(twoDimensionTree.countLocationsInArea(0,0,10)[0]);
 
 

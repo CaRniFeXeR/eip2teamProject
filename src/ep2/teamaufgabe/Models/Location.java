@@ -1,30 +1,41 @@
 package ep2.teamaufgabe.Models;
 
 public abstract class Location {
-    private double x;
-    private  double y;
+    private Point coordinates;
     private String name;
 
     protected String type;
 
     public Location(double x, double y, String name) {
-        this.x = x;
-        this.y = y;
+        this.coordinates = new Point(x, y);
         this.name = name;
 
     }
 
     //region [ Getter]
+
     public double getXCoordiante() {
-        return x;
+        return coordinates.getXCoordinate();
     }
 
     public double getYCoordinate() {
-        return y;
+        return coordinates.getYCoordinate();
+    }
+
+    public Point getCoordinates() {
+        return coordinates;
     }
 
     public String getName() {
         return name;
+    }
+
+    //endregion
+
+    //region [public Methods]
+
+    public void print() {
+        System.out.println(this.name + " " + this.coordinates.getOutputString() + " - " + this.type);
     }
 
     //endregion
